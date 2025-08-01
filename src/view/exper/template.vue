@@ -7,6 +7,7 @@ import Preload from '@/utils/jsPsych/plugin/Preload.vue';
 import HtmlKeyboard from '@/utils/jsPsych/plugin/HtmlKeyboard.vue';
 import Survey from '@/utils/jsPsych/plugin/Survey.vue';
 import Instruction from '@/utils/jsPsych/plugin/Instruction.vue';
+import { save_data } from '@/utils/dataSaver';
 
 JsPsych.opts = {
     ...JsPsych.opts,
@@ -85,6 +86,7 @@ timeline.push({
     }),
     on_load() {
         JsPsych.plugin.window.destoryListener();
+        save_data(jspsych.data.get().csv());
     }
 });
 
