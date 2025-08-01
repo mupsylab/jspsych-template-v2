@@ -88,7 +88,7 @@ export class Timeline extends TimelineNode {
             // 一轮完毕
             this.cursor_node = 0;
             this.cursor_variable += 1;
-            if (this.cursor_variable && this.cursor_variable % this.timeline_variables.length === 0) {
+            if ((this.cursor_variable && this.cursor_variable % this.timeline_variables.length === 0) || (this.description.trial_num && this.cursor_variable >= this.description.trial_num)) {
                 // 变量循环完毕
                 this.cursor_variable = 0;
                 this.cursor_repetition += 1;

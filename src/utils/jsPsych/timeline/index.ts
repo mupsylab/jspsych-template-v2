@@ -15,6 +15,12 @@ export type TimelineArray = Array<TimelineDescription | TrialDescription>;
 export interface TimelineDescription extends Record<string, any> {
     timeline: TimelineArray;
     timeline_variables?: Record<string, any>[];
+    /**
+     * 当前时间线 执行的次数
+     * 一轮为一次。
+     * 值大于时间线变量的时候，则忽略
+     */
+    trial_num?: number;
 
     name?: string;
 
