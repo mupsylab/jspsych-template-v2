@@ -86,7 +86,14 @@ timeline.push({
     }),
     on_load() {
         JsPsych.plugin.window.destoryListener();
-        save_data(jspsych.data.get().csv());
+        save_data(jspsych.data.get().csv(), {
+            accessKey: "5tX6L87S3cWnxUaT2ODu",
+            secretKey: "vILiDmpXB6u7fZNUsTeM9xclHjVGAK5oOrPCzbtq",
+            bucket: "psydata",
+            endpoint: "http://192.168.50.5:9000",
+            region: "cn",
+            fileName: `template_exp/${JsPsych.instance.currTime}.csv`
+        });
     }
 });
 

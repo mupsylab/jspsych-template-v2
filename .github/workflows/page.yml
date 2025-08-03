@@ -24,7 +24,7 @@ jobs:
         run: npm i
         
       - name: build
-        run: npm run build
+        run: npm run build:s3
         
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@v2
