@@ -7,14 +7,14 @@ export function save_s3(opts: {
     secretKey: string,
     bucket: string,
     endpoint: string,
+    signEndpoint?: string,
     region: string,
     fileName: string
 }) {
     return new Promise((resolve, reject) => {
-        const { csv, accessKey, secretKey, bucket, endpoint, region, fileName } = opts;
-        const origin = new URL(endpoint).origin;
+        const { csv, accessKey, secretKey, bucket, signEndpoint, endpoint, region, fileName } = opts;
         const s3 = new S3Client({
-            endpoint: origin, region,
+            endpoint: signEndpoint ? signEndpoint : endpoint, region,
             credentials: {
                 accessKeyId: accessKey,
                 secretAccessKey: secretKey
@@ -31,7 +31,7 @@ export function save_s3(opts: {
             }),
             { expiresIn: 600 }
         ).then(url => {
-            const u = url.replace(origin, endpoint);
+            const u = url.replace(signEndpoint ? signEndpoint : endpoint, endpoint);
             fetch(u, {
                 method: 'PUT',
                 body: csv
